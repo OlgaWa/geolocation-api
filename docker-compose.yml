@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://mongodb:27017
+      MONGO_DB_NAME: geolocation_db
+      IPSTACK_API_KEY: provide_key
+      IPSTACK_URL: https://api.ipstack.com
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
