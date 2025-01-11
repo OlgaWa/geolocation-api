@@ -1,27 +1,19 @@
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel
 
 
 class GeolocationRequest(BaseModel):
-    ip: str | None = None
-    url: str | None = None
-
-    @model_validator(mode="before")
-    def en(cls, values):
-        ip = values.get("ip")
-        url = values.get("url")
-
-        # Check that at least one of the fields is set
-        if not ip and not url:
-            raise ValueError("Provide 'ip' or 'url'.")
-
-        return values
+    geo_identifier: str  # IP address or url
 
 
-class GeolocationResponse(BaseModel):
+class Geolocation(BaseModel):
     ip: str
     ip_type: str
     city: str
     country: str
+    region: str | None
     latitude: float
     longitude: float
-    timezone: str
+
+
+class ManyGeolocations(BaseModel):
+    geolocations: list[Geolocation]

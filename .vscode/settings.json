@@ -4,5 +4,6 @@
     },
     "editor.formatOnSave": true,
     "python.testing.pytestEnabled": true,
-    "python.envFile": "${workspaceFolder}/.env"
+    "python.envFile": "${workspaceFolder}/.env",
+    "black-formatter.args": ["--line-length", "79"]
 }
